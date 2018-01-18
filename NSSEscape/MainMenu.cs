@@ -9,13 +9,12 @@ namespace NSSEscape
             Console.Clear();
             Console.WriteLine ("WELCOME TO NSS ESCAPE");
             Console.WriteLine ("**************************************");
-            Console.WriteLine ("1. Enter cohort");
-            Console.WriteLine ("2. Enter instructors");
-            Console.WriteLine ("3. Enter alumni");
-            Console.WriteLine ("4. View cohort alumni");
-            Console.WriteLine ("5. View cohort technology");
-            Console.WriteLine ("6. View cohort instructors");
-            Console.WriteLine ("7. Exit");
+            Console.WriteLine ("1. Enter instructors");
+            Console.WriteLine ("2. Enter cohorts");
+            Console.WriteLine ("3. View cohort");
+            //Console.WriteLine ("4. Modify instructors");
+            //Console.WriteLine ("5. Modiify cohort");
+            Console.WriteLine ("9. Exit");
             
 
             Console.Write ("> ");
