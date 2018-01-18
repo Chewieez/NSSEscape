@@ -12,7 +12,8 @@ namespace NSSEscape
             EnterInstructorsMenu enterInstructorsMenu = new EnterInstructorsMenu(db);
             EnterCohortsMenu enterCohortsMenu = new EnterCohortsMenu(db);
             ViewCohortsMenu viewCohorts = new ViewCohortsMenu(db);
-
+            EnterInstructorToCohortMenu enterInstructorToCohortMenu = new EnterInstructorToCohortMenu(db);
+            
             int choice;
 
             do
@@ -38,6 +39,10 @@ namespace NSSEscape
                         break;
                     }
 
+                    case 4: {
+                        enterInstructorToCohortMenu.Show();
+                        break;
+                    }
                     
 
                     default: 
