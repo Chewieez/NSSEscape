@@ -15,36 +15,33 @@ namespace NSSEscape
 
         public void Show()
         {
-            db.Query("select * from cohort",
-                (SqliteDataReader reader) =>
-                {
-                    _cohorts.Clear();
-                    while (reader.Read())
-                    {
-                        _cohorts.Add(new Cohort()
-                        {
-                            cohort_id = reader.GetInt32(0),
-                            cohort_number = reader.GetInt32(1),
-                            server_tech = reader.ToString()
-                        });
-                    }
-                }
-            );
-            
-            int cohortSelection;
-
-            do {
-                Console.Clear();
-                Console.WriteLine("Select Cohort (type 'quit' to Exit):");
+            string cohortSelection;
+            Cohort currentCohort = new Cohort();
+            do
+            {
+                Console.WriteLine("Enter A Cohort (as Day1-Day21, Evening1-Evening5):");
                 Console.WriteLine("*******************");
+                Console.Write("> ");
                 cohortSelection = Console.ReadLine();
-                
-                if (instructorName.ToLower() != "quit" && instructorName.Length > 0) {
-                    db.Insert($@"INSERT INTO Instructors (Name, Id)
-                                VALUES ('{instructorName}', null);");
-                }
+                db.Query($"select * from cohort where cohortNumber = '{cohortSelection}'",
+                    (SqliteDataReader reader) =>
+                    {
+                        while (reader.Read())
+                        {            
+                            currentCohort.cohort_id = reader.GetInt32(0);
+                            currentCohort.cohort_name = reader.GetString(1);
+                            currentCohort.server_tech = reader.GetString(2);
+                        }
+                    });
 
-            } while (instructorName.ToLower() != "quit");
+                    Console.WriteLine(currentCohort.cohort_name + " " + currentCohort.server_tech);
+
+                // if (cohortSelection =) {
+                //     db.Insert($@"INSERT INTO Instructors (Name, Id)
+                //                 VALUES ('{}', null);");
+                // }
+
+            } while (cohortSelection != "quit");
         }
     }
 }
