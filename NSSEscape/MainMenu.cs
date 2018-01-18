@@ -11,10 +11,12 @@ namespace NSSEscape
             Console.WriteLine ("**************************************");
             Console.WriteLine ("1. Enter instructors");
             Console.WriteLine ("2. Enter cohorts");
-            Console.WriteLine ("3. View cohort");
-            Console.WriteLine ("4. Modify instructors");
-            Console.WriteLine ("5. Modify cohort");
-            Console.WriteLine ("9. Exit");
+            Console.WriteLine ("3. Enter alumni");
+            Console.WriteLine ("4. Assign Instructor to Cohort");
+            Console.WriteLine ("5. View cohort");
+            Console.WriteLine ("6. Modify instructors");
+            Console.WriteLine ("7. Modify cohort");
+            Console.WriteLine ("8. Exit");
             
 
             Console.Write ("> ");
