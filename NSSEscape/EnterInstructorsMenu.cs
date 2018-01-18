@@ -20,7 +20,7 @@ namespace NSSEscape
                 Console.WriteLine("*******************");
                 instructorName = Console.ReadLine();
                 
-                if (instructorName.ToLower() != "quit") {
+                if (instructorName.ToLower() != "quit" && instructorName.Length > 0) {
                     db.Insert($@"INSERT INTO Instructors (Name, Id)
                                 VALUES ('{instructorName}', null);");
                 }
