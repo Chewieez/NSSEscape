@@ -7,6 +7,7 @@ namespace NSSEscape
     public class ViewCohortsMenu
     {
         private DatabaseInterface db;
+        private EnterAlumnusMenu _enterAlumnusMenu = new EnterAlumnusMenu(); 
         private List<Cohort> _cohorts = new List<Cohort>();
         public ViewCohortsMenu(DatabaseInterface DB)
         {
@@ -16,7 +17,10 @@ namespace NSSEscape
         public void Show()
         {
             string cohortSelection;
+            int choice = 0;
+
             Cohort currentCohort = new Cohort();
+
             do
             {
                 Console.WriteLine("Enter A Cohort (as Day1-Day21, Evening1-Evening5):");
@@ -34,14 +38,37 @@ namespace NSSEscape
                         }
                     });
 
-                    Console.WriteLine(currentCohort.cohort_name + " " + currentCohort.server_tech);
+                    Console.WriteLine("Select An Option:");
+                    Console.WriteLine("*******************");
+                    Console.WriteLine($"1. View Alumni for {cohortSelection}");
+                    Console.WriteLine($"2. View Server Side Technology for {cohortSelection}");
+                    Console.WriteLine($"3. View Instructors for {cohortSelection}");
 
-                // if (cohortSelection =) {
-                //     db.Insert($@"INSERT INTO Instructors (Name, Id)
-                //                 VALUES ('{}', null);");
-                // }
+                    Console.Write("> ");
+                    choice = Console.Read();
 
-            } while (cohortSelection != "quit");
+                    switch (choice) {
+                    
+                    case 1: {
+                        // View Alumni
+                        break;
+                    }
+
+                    case 2: {
+                        // View Server Side Tech
+                        break;
+                    }
+
+                    case 3: {
+                        // View Instructors
+                        break;
+                    }                    
+
+                    default: 
+                        break;
+                }
+
+            } while (choice >= 0);
         }
     }
 }
