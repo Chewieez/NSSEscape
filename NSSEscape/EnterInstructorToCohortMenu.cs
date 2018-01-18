@@ -90,7 +90,7 @@ namespace NSSEscape
                 int.TryParse(enteredValue, out output);
                 
                 
-                if (output > 0 && output < instructors.Count()) {
+                if (output > 0 && output < instructors.Count()+1) {
                     Instructor selectedInstructor = instructors[output-1];
                     selectedInstructors.Add(instructors[output-1]);
                     db.Insert($@"INSERT INTO CohortInstructorsJoin (CohortId, InstructorId, Id)
