@@ -31,11 +31,13 @@ namespace NSSEscape
                 }
             );
             
+            int cohortSelection;
+
             do {
                 Console.Clear();
                 Console.WriteLine("Select Cohort (type 'quit' to Exit):");
                 Console.WriteLine("*******************");
-                instructorName = Console.ReadLine();
+                cohortSelection = Console.ReadLine();
                 
                 if (instructorName.ToLower() != "quit" && instructorName.Length > 0) {
                     db.Insert($@"INSERT INTO Instructors (Name, Id)
