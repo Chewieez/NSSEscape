@@ -12,8 +12,8 @@ namespace NSSEscape
             Console.WriteLine ("1. Enter instructors");
             Console.WriteLine ("2. Enter cohorts");
             Console.WriteLine ("3. View cohort");
-            //Console.WriteLine ("4. Modify instructors");
-            //Console.WriteLine ("5. Modiify cohort");
+            Console.WriteLine ("4. Modify instructors");
+            Console.WriteLine ("5. Modiify cohort");
             Console.WriteLine ("9. Exit");
             
 
