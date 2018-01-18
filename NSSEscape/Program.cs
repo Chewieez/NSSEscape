@@ -47,7 +47,7 @@ namespace NSSEscape
                 }
 
             } while (choice != 7);
-            Console.WriteLine("Hello World!");
+
         }
     }
 }
