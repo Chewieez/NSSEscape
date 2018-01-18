@@ -12,10 +12,13 @@ namespace NSSEscape
         {
             // Replace {you} with the correct value
             try {
-                _connectionString = $"Data Source=/Users/krystopher/workspace/csharp/exercises/BankTeller/BankTeller/bankteller.db";
+                _connectionString = $"Data Source=NSSEscape.db";
                 _connection = new SqliteConnection(_connectionString);
+                Console.Write("Connected...");
+
             } catch (Exception err) {
-                Console.WriteLine("Not connected to db " + err.Data);
+                Console.WriteLine("ERROR: Not connected to db " + err.Data);
+                Console.ReadLine();
             }
         }
 

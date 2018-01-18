@@ -23,6 +23,8 @@ namespace NSSEscape
 
                     // Enter instructors
                     case 1: {
+
+                        // Testing code
                         enterInstructorsMenu.Show();
                         break;
                     }
