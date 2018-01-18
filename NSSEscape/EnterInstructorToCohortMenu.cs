@@ -36,9 +36,8 @@ namespace NSSEscape
                 );
 
                 if (cohort.ToLower() != "quit") {
-                    GetInstructor();
+                    GetInstructor(cohortId);
                 }
-
 
             } while (cohort.ToLower() != "quit");
 
@@ -47,7 +46,7 @@ namespace NSSEscape
 
         }
 
-        public void GetInstructor() {
+        public void GetInstructor(int cohortId) {
              // Get instructors
 
             int output;
@@ -55,8 +54,8 @@ namespace NSSEscape
             List<Instructor> selectedInstructors = new List<Instructor>();
             List<Instructor> instructors = new List<Instructor>();
 
-            do {
-                Console.Clear();
+
+            Console.Clear();
                 Console.WriteLine("Select instructors: ");
                 instructors.Clear();
                 db.Query($@"SELECT Name, Id FROM Instructors;",
@@ -83,20 +82,26 @@ namespace NSSEscape
                 }
                 Console.WriteLine("99. Exit");
 
-                // do while they enter numbers
+            do {
+ 
                 output = 0;
                 Console.Write("> ");
                 string enteredValue = Console.ReadLine();
                 int.TryParse(enteredValue, out output);
                 
-                if (output > 0 && output < 99) {
+                
+                if (output > 0 && output < instructors.Count()) {
+                    Instructor selectedInstructor = instructors[output-1];
                     selectedInstructors.Add(instructors[output-1]);
-                    // add instructor
-                } else if (output == 99) {
-                    return;
+                    db.Insert($@"INSERT INTO CohortInstructorsJoin (CohortId, InstructorId, Id)
+                       VALUES ({cohortId}, {selectedInstructor.Id}, null);");
+                    Console.WriteLine($" {selectedInstructor.Name} ADDED!");
+
                 }
-                Console.WriteLine(selectedInstructors.Count());
-                Console.ReadLine();
+                else if (output < 99) {
+                    Console.WriteLine("Nothing Added - ENTER to continue");
+                    Console.ReadLine();
+                } 
 
             } while (output != 99);
            
