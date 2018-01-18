@@ -7,7 +7,7 @@ namespace NSSEscape
     {
         private DatabaseInterface db;
 
-        public void EnterAlumnus(DatabaseInterface DB)
+        public EnterAlumnusMenu(DatabaseInterface DB)
         {
             db = DB;
         }
@@ -33,15 +33,18 @@ namespace NSSEscape
                         Where CohortNumber = '{Cohort}';",
                         (SqliteDataReader reader) =>
                         {
-                            CohortId = reader.GetInt32(0);
+                            while (reader.Read ()) {
+                                CohortId = reader.GetInt32(0);
+                            }
                         }
                 );
 
 
                 if (AlumnusName.ToLower() != "quit" && AlumnusName.Length > 0)
                 {
-                    db.Insert($@"INSERT INTO Alumni (CohortID, Name, Id)
-                                VALUES ('{CohortId}', '{AlumnusName}', null);");
+                    db.Insert($@"INSERT INTO Alumni 
+                                (CohortID, Name, Id)
+                                VALUES ({CohortId}, '{AlumnusName}', null);");
                 }
 
             } while (AlumnusName.ToLower() != "quit");
