@@ -17,7 +17,7 @@ namespace NSSEscape
             do {
                 Console.Clear();
                 // ask user for cohort name
-                Console.WriteLine("Enter your cohort name and number, as 'Day5' or 'Evening5'.");
+                Console.WriteLine("Enter your cohort name and number, as 'Day5' or 'Evening5'. (type 'quit' to Exit)");
                 Console.WriteLine("*******************");
                 cohortName = Console.ReadLine();
 

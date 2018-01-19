@@ -14,40 +14,55 @@ namespace NSSEscape
 
         public void Show()
         {
-            string AlumnusName;
+            string AlumnusName = "";
             string Cohort;
             int CohortId = 0;
 
             do
             {
                 Console.Clear();
-                Console.WriteLine("Enter Cohort (type 'quit' to Exit):");
+                Console.WriteLine("Enter Cohort Name (type 'quit' to Exit):");
                 Console.WriteLine("*******************");
                 Cohort = Console.ReadLine();
-                Console.WriteLine("Enter Full Alumnus Name (type 'quit' to Exit):");
-                Console.WriteLine("*******************");
-                AlumnusName = Console.ReadLine();
-                db.Query(
-                        $@"select CohortId
-                        From Cohort
-                        Where CohortNumber = '{Cohort}';",
-                        (SqliteDataReader reader) =>
-                        {
-                            while (reader.Read ()) {
-                                CohortId = reader.GetInt32(0);
+
+                if (Cohort.ToLower() != "quit" && Cohort.Length > 0)
+                {
+                    Console.WriteLine("Enter Full Alumnus Name (type 'quit' to Exit):");
+                    Console.WriteLine("*******************");
+                    AlumnusName = Console.ReadLine();
+                    db.Query(
+                            $@"select CohortId
+                            From Cohort
+                            Where CohortNumber = '{Cohort}';",
+                            (SqliteDataReader reader) =>
+                            {
+                                while (reader.Read ()) {
+                                    CohortId = reader.GetInt32(0);
+                                }
                             }
-                        }
-                );
+                    );
+
+                }
+
+                // if user types quit in either prompt, make both variabled equal "quit" to exit out of the menu.
+                if (Cohort.ToLower() == "quit") {
+                    AlumnusName = "quit";
+                } else if (AlumnusName.ToLower() == "quit") {
+                    Cohort = "quit";
+                };
 
 
-                if (AlumnusName.ToLower() != "quit" && AlumnusName.Length > 0)
+                if ((Cohort.ToLower() != "quit"  && Cohort.Length > 0) && (AlumnusName.ToLower() != "quit" && AlumnusName.Length > 0))
                 {
                     db.Insert($@"INSERT INTO Alumni 
                                 (CohortID, Name, Id)
                                 VALUES ({CohortId}, '{AlumnusName}', null);");
                 }
 
-            } while (AlumnusName.ToLower() != "quit");
+
+
+
+            } while (Cohort.ToLower() != "quit" && AlumnusName.ToLower() != "quit");
 
         }
 
