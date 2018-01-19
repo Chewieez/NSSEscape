@@ -44,8 +44,15 @@ namespace NSSEscape
 
                 }
 
+                // if user types quit in either prompt, make both variabled equal "quit" to exit out of the menu.
+                if (Cohort.ToLower() == "quit") {
+                    AlumnusName = "quit";
+                } else if (AlumnusName.ToLower() == "quit") {
+                    Cohort = "quit";
+                };
 
-                if ((Cohort.ToLower() != "quit"  && Cohort.Length > 0) || (AlumnusName.ToLower() != "quit" && AlumnusName.Length > 0))
+
+                if ((Cohort.ToLower() != "quit"  && Cohort.Length > 0) && (AlumnusName.ToLower() != "quit" && AlumnusName.Length > 0))
                 {
                     db.Insert($@"INSERT INTO Alumni 
                                 (CohortID, Name, Id)
@@ -53,12 +60,6 @@ namespace NSSEscape
                 }
 
 
-                // if user types quit in either prompt, make both variabled equal "quit" to exit out of the menu.
-                if (Cohort.ToLower() == "quit") {
-                    AlumnusName = "quit";
-                } else if (AlumnusName.ToLower() == "quit") {
-                    Cohort = "quit";
-                };
 
 
             } while (Cohort.ToLower() != "quit" && AlumnusName.ToLower() != "quit");
