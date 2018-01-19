@@ -7,7 +7,7 @@ namespace NSSEscape
     public class ViewCohortsMenu
     {
         private DatabaseInterface db;
-        private EnterAlumnusMenu _enterAlumnusMenu = new EnterAlumnusMenu(); 
+        private EnterAlumnusMenu _enterAlumnusMenu = new EnterAlumnusMenu(new DatabaseInterface());
         private List<Cohort> _cohorts = new List<Cohort>();
         public ViewCohortsMenu(DatabaseInterface DB)
         {
@@ -17,7 +17,7 @@ namespace NSSEscape
         public void Show()
         {
             string cohortSelection;
-            int choice = 0;
+            ConsoleKeyInfo enteredKey;
 
             Cohort currentCohort = new Cohort();
 
@@ -31,44 +31,57 @@ namespace NSSEscape
                     (SqliteDataReader reader) =>
                     {
                         while (reader.Read())
-                        {            
+                        {
                             currentCohort.cohort_id = reader.GetInt32(0);
                             currentCohort.cohort_name = reader.GetString(1);
                             currentCohort.server_tech = reader.GetString(2);
                         }
                     });
 
-                    Console.WriteLine("Select An Option:");
-                    Console.WriteLine("*******************");
-                    Console.WriteLine($"1. View Alumni for {cohortSelection}");
-                    Console.WriteLine($"2. View Server Side Technology for {cohortSelection}");
-                    Console.WriteLine($"3. View Instructors for {cohortSelection}");
+                Console.WriteLine("Select An Option:");
+                Console.WriteLine("*******************");
+                Console.WriteLine($"1. View Alumni for {cohortSelection}");
+                Console.WriteLine($"2. View Server Side Technology for {cohortSelection}");
+                Console.WriteLine($"3. View Instructors for {cohortSelection}");
 
-                    Console.Write("> ");
-                    choice = Console.Read();
+                Console.Write("> ");
+                enteredKey = Console.ReadKey();
+                Console.WriteLine("");
+                int output = 0;
+                int.TryParse(enteredKey.KeyChar.ToString(), out output);
 
-                    switch (choice) {
-                    
-                    case 1: {
-                        // View Alumni
-                        break;
-                    }
+                switch (output)
+                {
 
-                    case 2: {
-                        // View Server Side Tech
-                        break;
-                    }
+                    case 1:
+                        {
+                            // View Alumni
+                            break;
+                        }
 
-                    case 3: {
-                        // View Instructors
-                        break;
-                    }                    
+                    case 2:
+                        {
+                            // View Server Side Tech
+                            break;
+                        }
 
-                    default: 
+                    case 3:
+                        {
+                            // View Instructors
+                            break;
+                        }
+
+                    case 9:
+                        {                            
+                        MainMenu.Show();
+                            break;
+                        }
+
+                    default:
                         break;
                 }
 
-            } while (choice >= 0);
+            } while (enteredKey.Key != ConsoleKey.Escape);
         }
     }
 }
