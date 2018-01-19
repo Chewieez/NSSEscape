@@ -20,7 +20,7 @@ namespace NSSEscape
 
             do {
                 Console.Clear();
-                Console.WriteLine("Enter the current cohort name, as Day5 or Evening5");
+                Console.WriteLine("Enter the current cohort name, as Day5 or Evening5. (type 'quit' to Exit)");
                 Console.WriteLine("*******************");
                 CurrentCohortName = Console.ReadLine();
                 
