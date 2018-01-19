@@ -1,4 +1,5 @@
 bin
 obj
 *.sqlite3
-    
+.DS_Store
+
